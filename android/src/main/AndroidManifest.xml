@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="io.zhdishaq.obdII">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <application>
+        <service
+            android:name="com.github.pires.obd.reader.io.ObdGatewayService"
+            android:launchMode="singleInstance"
+            android:exported="false" />
+        <service
+            android:name="com.github.pires.obd.reader.io.MockObdGatewayService"
+            android:launchMode="singleInstance"
+            android:exported="false" />
+    </application>
+
+</manifest>
