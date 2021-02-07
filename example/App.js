@@ -82,7 +82,7 @@ export default class App extends Component {
     
     let copyData = JSON.parse(JSON.stringify(this.state.obd2Data));
     copyData[data.cmdID] = data;
-    //console.log(JSON.stringify(copyData));
+    console.log(JSON.stringify(copyData));
     this.setState({
       obd2Data : copyData,
     });
