@@ -50,6 +50,7 @@ import com.github.pires.obd.reader.io.MockObdGatewayService;
 import com.github.pires.obd.reader.io.ObdCommandJob;
 import com.github.pires.obd.reader.io.ObdGatewayService;
 import com.github.pires.obd.reader.io.ObdProgressListener;
+import com.github.pires.obd.enums.ObdProtocols;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -63,6 +64,7 @@ public class OBD2Handler implements ObdProgressListener {
   private static final String EVENTNAME_BT_STATUS = "obd2BluetoothStatus";
   private static final String EVENTNAME_OBD_STATUS = "obd2Status";
 
+  public static ObdProtocols protocol=ObdProtocols.AUTO;
   private ReactContext mReactContext = null;
   private ObdProgressListener mObdProgressListener = null;
   private Arguments mArguments;
@@ -145,6 +147,10 @@ public class OBD2Handler implements ObdProgressListener {
     sendDeviceStatus(EVENTNAME_OBD_STATUS, "disconnected");
   }
 
+
+  public void setProtocol(ObdProtocols obj){
+    protocol=obj;
+  }
   public void startLiveData() {
     doBindService();
 

@@ -23,6 +23,7 @@ import com.github.pires.obd.commands.temperature.AmbientAirTemperatureCommand;
 import com.github.pires.obd.enums.ObdProtocols;
 import com.github.pires.obd.exceptions.UnsupportedCommandException;
 import com.github.pires.obd.reader.io.ObdCommandJob.ObdCommandJobState;
+import com.jetbridge.reactobd2.OBD2Handler;
 
 import java.io.File;
 import java.io.IOException;
@@ -140,7 +141,7 @@ public class ObdGatewayService extends AbstractGatewayService {
         // Get protocol from preferences
         // final String protocol = prefs.getString(ConfigActivity.PROTOCOLS_LIST_KEY, "AUTO");
         // queueJob(new ObdCommandJob(new SelectProtocolCommand(ObdProtocols.valueOf(protocol))));
-        queueJob(new ObdCommandJob(new SelectProtocolCommand(ObdProtocols.valueOf("AUTO"))));
+        queueJob(new ObdCommandJob(new SelectProtocolCommand(OBD2Handler.protocol)));
 
         // Job for returning dummy data
         queueJob(new ObdCommandJob(new AmbientAirTemperatureCommand()));

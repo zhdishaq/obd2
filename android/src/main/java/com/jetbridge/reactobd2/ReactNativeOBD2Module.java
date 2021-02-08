@@ -42,6 +42,7 @@ import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.IllegalViewOperationException;
+import com.github.pires.obd.enums.ObdProtocols;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -74,6 +75,51 @@ public class ReactNativeOBD2Module extends ReactContextBaseJavaModule {
     mOBD2Handler.ready();
   }
 
+  @ReactMethod
+  public void setProtocol(String name) {
+
+    switch (name) {
+      case "AUTO":
+        mOBD2Handler.setProtocol(ObdProtocols.AUTO);
+        break;
+      case "ISO_9141_2":
+        mOBD2Handler.setProtocol(ObdProtocols.ISO_9141_2);
+        break;
+      case "ISO_14230_4_KWP":
+        mOBD2Handler.setProtocol(ObdProtocols.ISO_14230_4_KWP);
+        break;
+      case "ISO_14230_4_KWP_FAST":
+        mOBD2Handler.setProtocol(ObdProtocols.ISO_14230_4_KWP_FAST);
+        break;
+      case "ISO_15765_4_CAN":
+        mOBD2Handler.setProtocol(ObdProtocols.ISO_15765_4_CAN);
+        break;
+      case "ISO_15765_4_CAN_B":
+        mOBD2Handler.setProtocol(ObdProtocols.ISO_15765_4_CAN_B);
+        break;
+      case "ISO_15765_4_CAN_C":
+        mOBD2Handler.setProtocol(ObdProtocols.ISO_15765_4_CAN_C);
+        break;
+      case "SAE_J1850_PWM":
+        mOBD2Handler.setProtocol(ObdProtocols.SAE_J1850_PWM);
+        break;
+      case "SAE_J1850_VPW":
+        mOBD2Handler.setProtocol(ObdProtocols.SAE_J1850_VPW);
+        break;
+      case "SAE_J1939_CAN":
+        mOBD2Handler.setProtocol(ObdProtocols.SAE_J1939_CAN);
+        break;
+      case "USER1_CAN":
+        mOBD2Handler.setProtocol(ObdProtocols.USER1_CAN);
+        break;
+      case "USER2_CAN":
+        mOBD2Handler.setProtocol(ObdProtocols.USER2_CAN);
+        break;
+
+    }
+
+
+  }
   @ReactMethod
   public void getBluetoothDeviceName(Promise aPromise) {
     if (mOBD2Handler == null) {

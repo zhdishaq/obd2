@@ -10,7 +10,7 @@
 
 import React, { Component } from 'react';
 import { Platform,Alert, StyleSheet, Text, View ,ScrollView,DeviceEventEmitter, TouchableOpacity} from 'react-native';
-import JetBridge_OBDII from 'react-native-obdii';
+import JetBridge_OBDII,{Protocols} from 'react-native-obdii';
 
 export default class App extends Component {
   
@@ -100,42 +100,6 @@ export default class App extends Component {
      }
   }
 
-  sensorOrientation(data) {
-//    this.setState({debug: 'Orientation data = ' + JSON.stringify(data)});
-    if (data.azimuth >= 337.5 || data.azimuth < 22.5) {
-      if (this.state.direction !== 'N') {
-        this.setState({direction: 'N'});
-      }
-    } else if (data.azimuth >= 22.5 && data.azimuth < 67.5) {
-      if (this.state.direction !== 'NE') {
-        this.setState({direction: 'NE'});
-      }
-    } else if (data.azimuth >= 67.5 && data.azimuth < 112.5) {
-      if (this.state.direction !== 'E') {
-        this.setState({direction: 'E'});
-      }
-    } else if (data.azimuth >= 112.5 && data.azimuth < 157.5) {
-      if (this.state.direction !== 'SE') {
-        this.setState({direction: 'SE'});
-      }
-    } else if (data.azimuth >= 157.5 && data.azimuth < 202.5) {
-      if (this.state.direction !== 'S') {
-        this.setState({direction: 'S'});
-      }
-    } else if (data.azimuth >= 202.5 && data.azimuth < 247.5) {
-      if (this.state.direction !== 'SW') {
-        this.setState({direction: 'SW'});
-      }
-    } else if (data.azimuth >= 247.5 && data.azimuth < 292.5) {
-      if (this.state.direction !== 'W') {
-        this.setState({direction: 'W'});
-      }
-    } else if (data.azimuth >= 292.5 && data.azimuth < 337.5) {
-      if (this.state.direction !== 'NW') {
-        this.setState({direction: 'NW'});
-      }
-    }
-  }
  
 
   componentWillUnmount() {
@@ -166,7 +130,7 @@ export default class App extends Component {
         this.setState({
           isStartLiveData: true,
         });
-        
+        JetBridge_OBDII.setProtocol('AUTO');
        // SensorManager.startOrientation(1000);
        // this.listenerOrientation = DeviceEventEmitter.addListener('Orientation', this.sensorOrientation);
         JetBridge_OBDII.setMockUpMode(this.state.isMockUpMode);
